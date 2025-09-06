@@ -7,3 +7,13 @@ export interface SearchResultItem {
   rating?: string;
   platform: 'Amazon' | 'Flipkart' | 'Swiggy' | 'Zepto' | 'Blinkit';
 }
+
+export interface PriceHistory {
+  date: string;
+  price: number;
+}
+
+export interface ProductWithHistory extends SearchResultItem {
+  priceHistory: PriceHistory[];
+  priceTrend: 'up' | 'down' | 'stable';
+}

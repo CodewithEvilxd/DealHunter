@@ -12,7 +12,7 @@
 [![Puppeteer](https://img.shields.io/badge/Puppeteer-24.10-green?style=flat-square&logo=puppeteer)](https://pptr.dev/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](https://opensource.org/licenses/MIT)
 
-[🌐 Live Demo](https://dealhunter.vercel.app) • [📖 Documentation](#documentation) • [🚀 Quick Start](#installation)
+[🌐 Live Demo](https://dealhunter.vercel.app) • [📖 Documentation](#documentation) • [🚀 Quick Start](#installation) • [📂 GitHub](https://github.com/CodewithEvilxd/DealHunter)
 
 </div>
 
@@ -117,7 +117,7 @@ graph TD
 ### **Quick Start**
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/dealhunter.git
+git clone https://github.com/CodewithEvilxd/DealHunter.git
 cd dealhunter
 
 # Install dependencies
@@ -281,6 +281,11 @@ https://dealhunter.vercel.app
 - **Railway**: Docker-based deployment
 - **AWS Amplify**: Full-stack deployment with CI/CD
 
+### **GitHub Repository**
+- **Repository**: [https://github.com/CodewithEvilxd/DealHunter](https://github.com/CodewithEvilxd/DealHunter)
+- **Issues**: [Report bugs or request features](https://github.com/CodewithEvilxd/DealHunter/issues)
+- **Discussions**: [Join community discussions](https://github.com/CodewithEvilxd/DealHunter/discussions)
+
 ---
 
 ## 🤝 **Contributing**
@@ -372,9 +377,9 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 ## 📞 **Support**
 
 - 📧 **Email**: support@dealhunter.com
-- 🐛 **Issues**: [GitHub Issues](https://github.com/yourusername/dealhunter/issues)
-- 💬 **Discussions**: [GitHub Discussions](https://github.com/yourusername/dealhunter/discussions)
-- 📖 **Documentation**: [Wiki](https://github.com/yourusername/dealhunter/wiki)
+- 🐛 **Issues**: [GitHub Issues](https://github.com/CodewithEvilxd/DealHunter/issues)
+- 💬 **Discussions**: [GitHub Discussions](https://github.com/CodewithEvilxd/DealHunter/discussions)
+- 📖 **Documentation**: [Wiki](https://github.com/CodewithEvilxd/DealHunter/wiki)
 
 ---
 

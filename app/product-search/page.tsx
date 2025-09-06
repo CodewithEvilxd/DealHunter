@@ -10,9 +10,10 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Slider } from '@/components/ui/slider';
 import { Label } from '@/components/ui/label';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
-import { Search, ArrowLeft, ExternalLink, Sparkles, Star, Filter, ChevronDown, ChevronUp } from 'lucide-react';
+import { Search, ArrowLeft, ExternalLink, Sparkles, Star, Filter, ChevronDown, ChevronUp, TrendingUp, TrendingDown, Minus } from 'lucide-react';
 import Link from 'next/link';
-import { SearchResultItem } from '@/lib/types';
+import { SearchResultItem, ProductWithHistory } from '@/lib/types';
+import { addPriceHistoryToProducts, getPriceChange } from '@/lib/price-history';
 import { Geist } from 'next/font/google';
 import { SearchResultsSkeleton } from '@/components/loading-skeleton';
 
@@ -47,7 +48,7 @@ export default function SuperSearchPage() {
   const [searchTerm, setSearchTerm] = useState('');
   const [searchCategory, setSearchCategory] = useState('products');
   const [isSearching, setIsSearching] = useState(false);
-  const [results, setResults] = useState<SearchResultItem[]>([]);
+  const [results, setResults] = useState<ProductWithHistory[]>([]);
   const [notFound, setNotFound] = useState(false);
   const debounceRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -84,7 +85,8 @@ export default function SuperSearchPage() {
       const data = await response.json();
 
       if (response.ok && Array.isArray(data) && data.length > 0) {
-        setResults(data);
+        const productsWithHistory = addPriceHistoryToProducts(data);
+        setResults(productsWithHistory);
       } else {
         setNotFound(true);
       }
@@ -390,6 +392,26 @@ export default function SuperSearchPage() {
                             <p className="text-xl font-bold text-white">{formatPrice(item.price)}</p>
                             {item.quantity && (
                                 <p className="text-sm text-theme-text-secondary">{item.quantity}</p>
+                            )}
+                            {/* Price Trend Indicator */}
+                            {item.priceHistory && item.priceHistory.length > 1 && (
+                              <div className="flex items-center gap-1">
+                                {item.priceTrend === 'up' && <TrendingUp className="w-4 h-4 text-red-400" />}
+                                {item.priceTrend === 'down' && <TrendingDown className="w-4 h-4 text-green-400" />}
+                                {item.priceTrend === 'stable' && <Minus className="w-4 h-4 text-gray-400" />}
+                                {(() => {
+                                  const change = getPriceChange(item);
+                                  if (change) {
+                                    const isPositive = change.amount > 0;
+                                    return (
+                                      <span className={`text-xs font-medium ${isPositive ? 'text-red-400' : 'text-green-400'}`}>
+                                        {isPositive ? '+' : ''}₹{Math.abs(change.amount).toFixed(0)} ({change.percentage > 0 ? '+' : ''}{change.percentage.toFixed(1)}%)
+                                      </span>
+                                    );
+                                  }
+                                  return null;
+                                })()}
+                              </div>
                             )}
                         </div>
                         {item.rating && (
